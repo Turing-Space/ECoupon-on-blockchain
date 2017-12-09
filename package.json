@@ -5,7 +5,8 @@
   "scripts": {
     "lint": "eslint ./",
     "build": "webpack",
-    "dev": "webpack-dev-server"
+    "dev": "webpack-dev-server",
+    "start": "npm run dev"
   },
   "author": "Douglas von Kohorn",
   "license": "MIT",
