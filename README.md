@@ -11,7 +11,7 @@ HKUST university research. Supervised by prof. HUI Pan and Dimitris.<br>
 3. Compile and deploy our smart contracts:)<br>`truffle migrate --reset`
 4. Run our web app! <br>
 `npm run dev`
-5. Our application is running on [localhost:8080](localhost:8080)
+5. Our application is running on [http://localhost:8080](http://localhost:8080)
 <br>
 <br>
 <br>
