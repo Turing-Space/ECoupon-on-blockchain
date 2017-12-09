@@ -45,11 +45,6 @@ window.App = {
     });
   },
 
-  setStatus: function (message) {
-    var status = document.getElementById("status");
-    status.innerHTML = message;
-  },
-
   getAccs: async function () {
     return web3.eth.accounts;
   },
