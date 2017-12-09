@@ -1,4 +1,9 @@
-# Usage
+# E-coupon blockchain research project
+HKUST university research. Supervised by prof. HUI Pan and Dimitris.<br>
+
+## Demo 
+![demo img]('img/demo.png')
+## Usage
 1. After cloning the repository, install the dependencies under this directory.<br>
 `npm install`
 2. Open testrpc in another terminal to create 10 distinct accounts for testing.<br>

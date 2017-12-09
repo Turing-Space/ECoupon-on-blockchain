@@ -13,6 +13,10 @@ import Coupon_artifacts from '../../build/contracts/Coupon.json'
 var Market = contract(Market_artifacts);
 var Coupon = contract(Coupon_artifacts);
 
+var market_contract_address_rinkeby = "0x3a4b4259140988baAF9De41E95423052D9c0300E";
+var using_localhost = false;
+let market;
+
 // The following code is simple to show off interacting with your contracts.
 // As your needs grow you will likely need to change its form and structure.
 // For application bootstrapping, check out window.addEventListener below.
@@ -50,9 +54,6 @@ window.App = {
   },
 
   newCoupon: async function (value = 10, startTime = 0, endTime = 10) {
-    // Create market
-    let market = await Market.deployed();
-
     var coupon_info = {};
     coupon_info.startTime = startTime;
     coupon_info.endTime = endTime;
@@ -76,7 +77,6 @@ window.App = {
   },
 
   getOwnerAddr: async function (couponID) {
-    let market = await Market.deployed();
     var couponAddr = await market.getCouponAddrByID.call(couponID);
     var coupon = Coupon.at(couponAddr);
     var owner = await coupon.owner.call();
@@ -84,23 +84,20 @@ window.App = {
   },
 
   getStartTime: async function (couponID) {
-    let market = await Market.deployed();
     var couponAddr = await market.getCouponAddrByID.call(couponID);
     var coupon = Coupon.at(couponAddr);
     var startTime = await coupon.startTime.call();
-    return startTime;
+    return startTime.toNumber();
   },
 
   getEndTime: async function (couponID) {
-    let market = await Market.deployed();
     var couponAddr = await market.getCouponAddrByID.call(couponID);
     var coupon = Coupon.at(couponAddr);
     var endTime = await coupon.endTime.call();
-    return endTime;
+    return endTime.toNumber();
   },
 
   getIssuerAddr: async function (couponID) {
-    let market = await Market.deployed();
     var couponAddr = await market.getCouponAddrByID.call(couponID);
     var coupon = Coupon.at(couponAddr);
     var issuer = await coupon.issuer.call();
@@ -108,7 +105,6 @@ window.App = {
   },
 
   getCouponValue: async function (couponID) {
-    let market = await Market.deployed();
     var couponAddr = await market.getCouponAddrByID.call(couponID);
     var coupon = Coupon.at(couponAddr);
     var value = await coupon.value.call();
@@ -116,7 +112,6 @@ window.App = {
   },
 
   transfer: async function (couponID, receiverAddr) { // return true if success
-    let market = await Market.deployed();
     var couponAddr = await market.getCouponAddrByID.call(couponID);
 
     // Get coupon instance
@@ -132,7 +127,6 @@ window.App = {
   },
 
   redeem: async function (couponID) { // return true if success
-    let market = await Market.deployed();
     var couponAddr = await market.getCouponAddrByID.call(couponID);
     var coupon = Coupon.at(couponAddr);
     var owner = await coupon.owner.call();
@@ -146,9 +140,8 @@ window.App = {
   },
 
   getVolume: async function () {
-    let market = await Market.deployed();
     var volume = await market.volume.call();
-    return volume;
+    return volume.toNumber();
   },
 };
 
@@ -160,15 +153,21 @@ window.addEventListener('load', async function () {
     console.warn("Using web3 detected from external source. If you find that your accounts don't appear or you have 0 Market, ensure you've configured that source properly. If using MetaMask, see the following link. Feel free to delete this warning. :) http://truffleframework.com/tutorials/truffle-and-metamask")
     // Use Mist/MetaMask's provider
     window.web3 = new Web3(web3.currentProvider);
+    App.start();
+    var abiArray = [{ "constant": false, "inputs": [], "name": "getNextID", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "type": "function", "stateMutability": "nonpayable" }, { "constant": false, "inputs": [{ "name": "startTime", "type": "uint256" }, { "name": "endTime", "type": "uint256" }, { "name": "value", "type": "uint256" }], "name": "createCoupon", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "type": "function", "stateMutability": "nonpayable" }, { "constant": true, "inputs": [], "name": "volume", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "type": "function", "stateMutability": "view" }, { "constant": false, "inputs": [{ "name": "couponID", "type": "uint256" }], "name": "getCouponAddrByID", "outputs": [{ "name": "", "type": "address" }], "payable": false, "type": "function", "stateMutability": "nonpayable" }, { "inputs": [], "payable": false, "type": "constructor", "stateMutability": "nonpayable" }, { "anonymous": false, "inputs": [{ "indexed": false, "name": "id", "type": "uint256" }, { "indexed": false, "name": "new_address", "type": "address" }], "name": "CreateCoupon", "type": "event" }];
+    Market = web3.eth.contract(abiArray);
+
+    // instantiate by address
+    market = Market.at(market_contract_address_rinkeby);
+    // market = await Market.at(market_contract_address_rinkeby);
   } else {
-    // console.warn("No web3 detected. Falling back to http://127.0.0.1:8545. You should remove this fallback when you deploy live, as it's inherently insecure. Consider switching to Metamask for development. More info here: http://truffleframework.com/tutorials/truffle-and-metamask");
-    // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
     window.web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:8545"));
+    App.start();
+    market = await Market.deployed();
   }
 
-  App.start();
   var volume = await App.getVolume();
-  $('#current_volume').html(volume.toNumber());
+  $('#current_volume').html(volume);
 
 
   var accounts = await App.getAccs();
@@ -193,30 +192,17 @@ window.addEventListener('load', async function () {
         <td><img class="profile_img_align_center" src="/img/`+ accounts.indexOf(coupon_info.owner) + `.png" width="20" height="20" align="middle"> ` + coupon_info.owner + `</td>
         <td><img class="profile_img_align_center" src="/img/`+ accounts.indexOf(coupon_info.issuer) + `.png" width="20" height="20" align="middle"> ` + coupon_info.issuer + `</td>
         <td>`+ coupon_info.value + `</td>
-        <td>`+ coupon_info.startTime + `</td>
-        <td>`+ coupon_info.endTime + `</td>
+        <td>`+ new Date(coupon_info.startTime).toLocaleString() + `</td>
+        <td>`+ new Date(coupon_info.endTime).toLocaleString() + `</td>
       </tr>
     `);
   }
-
-  // var colorStr = '#DDDDFF'; // color of highlight  
-  // $('#coupon_info').bind('rowAddOrRemove', function(event){
-  //   $("tr").each(function (i,x) {
-  //     $(this).css("background-color",colorStr);
-  //     setTimeout(function(){
-  //         $(x).css("background-color","#ffffff"); // reset background
-  //         $(x).effect("highlight", {color: colorStr}, 3000); // animate
-  //     },3000);
-  //   });
-  // });
-
-
 
   $('#create_coupon').click(async function () {
     console.log('create coupon btn clicked!');
     var value = $('#value').val() || 100;
     var startTime = Date.now();
-    var endTime = startTime + 60 * 60; // add one hour
+    var endTime = startTime + 60 * 60 * 1000; // add one hour
     if ($('#startTime').data("DateTimePicker").date() != null) startTime = $('#startTime').data("DateTimePicker").date().unix();
     if ($('#endTime').data("DateTimePicker").date() != null) endTime = $('#endTime').data("DateTimePicker").date().unix();
     console.log(startTime, endTime);
@@ -230,7 +216,7 @@ window.addEventListener('load', async function () {
     appendCouponInfo(coupon_info);
     console.log(coupon_info);
     var volume = await App.getVolume();
-    $('#current_volume').html(volume.toNumber());
+    $('#current_volume').html(volume);
     return false;
   });
 
@@ -275,8 +261,19 @@ window.addEventListener('load', async function () {
 
     // Check if the coupon owner is correct 
     var owner = await App.getOwnerAddr(couponID);
+    var startTime = await App.getStartTime(couponID);
+    var endTime = await App.getEndTime(couponID);
     if ($('#owner_redeem').val() != owner) {
       alert("coupon owner incorrect!");
+      return;
+    }
+    var now = web3.eth.getBlock("latest").timestamp;
+    if (now > endTime) {
+      alert("coupon is expired");
+      return;
+    }
+    if (now < startTime) {
+      alert("coupon redeem period not yet reached");
       return;
     }
 

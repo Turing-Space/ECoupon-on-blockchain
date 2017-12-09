@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway);
 
 body{
-    padding-top: 20px;
+    padding-top: 5px;
 }
 
 *, *:before, *:after {
@@ -196,3 +196,19 @@ label {
     width: 100% !important;
     
 }
+
+.parent-vertical-centralized {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .parent-horizontal-centralized {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .profile_img_align_center {
+    margin-top: -5px;
+  }
