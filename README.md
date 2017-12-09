@@ -1,8 +1,8 @@
 # E-coupon blockchain research project
-HKUST university research. Supervised by prof. HUI Pan and Dimitris.<br>
+HKUST university research. Supervised by prof. HUI Pan and Dimitris.<br>
 
 ## Demo 
-![demo img]('img/demo.png')
+![demo img](img/demo.png)
 ## Usage
 1. After cloning the repository, install the dependencies under this directory.<br>
 `npm install`
