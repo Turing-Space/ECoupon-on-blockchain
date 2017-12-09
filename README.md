@@ -1,5 +1,6 @@
 # E-coupon blockchain research project
 HKUST university research. Supervised by prof. HUI Pan and Dimitris.<br>
+This repository is created for better organization from the original repository [here](https://github.com/yhuag/Ethereum-HyperIntelligent-Contract-Research). 
 
 ## Demo 
 ![demo img](img/demo.png)
