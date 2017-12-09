@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>E coupon blockchain research demo</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <script src="./app.js"></script>
+
+  <!-- jQuery -->
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css" type="text/css"
+    media="all" />
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+    crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+  <!-- ... -->
+  <script type="text/javascript" src="/bower_components/moment/min/moment.min.js"></script>
+  <script type="text/javascript" src="/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+  <link rel="stylesheet" href="/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css"
+  />
+
+  <!-- Bootstrap Select -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+
+</head>
+
+<style>
+  .parent-vertical-centralized {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .parent-horizontal-centralized {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .profile_img_align_center {
+    margin-top: -5px;
+  }
+</style>
+
+<body>
+  <div class="container">
+
+    <div class="row">
+      <form id="create_coupon_form">
+        <div class="form-group col-md-3">
+          <label for="value" class="control-label">Value</label>
+          <input type="text" value='' class="form-control" id="value" placeholder="100">
+        </div>
+        <div class="form-group col-md-3">
+          <label for="startTime" class="control-label">Start time</label>
+          <br> &nbsp;
+          <div class='input-group date' id='startTime' style="margin-left: -3px;">
+            <input type='text' class="form-control" placeholder="current time" />
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
+        </div>
+        <div class="form-group col-md-3">
+          <label for="endTime" class="control-label">End time</label>
+          <br> &nbsp;
+          <div class='input-group date' id='endTime' style="margin-left: -3px;">
+            <input type='text' class="form-control" placeholder="an hour later" />
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
+        </div>
+        <div class="form-group col-md-3 parent-vertical-centralized">
+          <label for="create_coupon" class="control-label" style="color:white">none</label>
+          <!-- <input class="btn btn-medium btn-blue btn-radius" type="button" name="submit" id="create_coupon" value="Create coupon"> -->
+          <a class="btn btn-blue" id="create_coupon" href="#">Create coupon</a>
+        </div>
+      </form>
+    </div>
+
+
+    <div class="row">
+      <form id="transfer_coupon_form">
+        <div class="form-group col-md-3">
+          <label for="value" class="control-label">Coupon ID</label>
+          <input type="text" value='' class="form-control" id="id" placeholder="1">
+        </div>
+        <div class="form-group col-md-3">
+          <label for="owner_transfer" class="control-label">Owner</label>
+          <select class="form-control avatar-select" name="owner_transfer" id="owner_transfer">
+          </select>
+        </div>
+        <div class="form-group col-md-3">
+          <!-- <label for="startTime" class="control-label">Receiver</label>
+          <input type="text" value='' class="form-control" id="receiver" placeholder="accounts[1]"> -->
+          <label for="receiver" class="control-label">Receiver</label>
+          <select class="form-control avatar-select" name="receiver" id="receiver">
+          </select>
+        </div>
+
+        <div class="form-group col-md-3 parent-vertical-centralized">
+          <label for="transfer_coupon" class="control-label" style="color:white">none</label>
+          <a class="btn btn-orange" id="transfer" href="#">Transfer coupon</a>
+        </div>
+      </form>
+    </div>
+
+    <div class="row">
+      <form id="redeem_coupon_form">
+        <div class="form-group col-md-3">
+          <label for="value" class="control-label">Coupon ID</label>
+          <input type="text" value='' class="form-control" id="id2" placeholder="1">
+        </div>
+        <div class="form-group col-md-3">
+          <label for="owner_redeem" class="control-label">Owner</label>
+          <select class="form-control avatar-select" name="owner_redeem" id="owner_redeem">
+          </select>
+        </div>
+        <div class="form-group col-md-3 parent-vertical-centralized">
+          <label for="transfer_coupon" class="control-label" style="color:white">none</label>
+          <a class="btn btn-green" id="redeem" href="#">Redeem coupon</a>
+
+        </div>
+      </form>
+
+      <div class="form-group col-md-3 parent-vertical-centralized">
+        <label for="transfer_coupon" class="control-label" style="color:white">none</label>
+        <a class="btn btn-gray" id="refresh" href="#">Refresh</a>
+
+      </div>
+    </div>
+
+    <div id="display_volume">
+      <b>Current volume:</b>
+      <div id="current_volume" style="display:inline-block">
+
+      </div>
+    </div>
+    <br>
+
+    <div id="coupons">
+
+      <table class="table table-striped table-hover" id="coupon_info">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>owner</th>
+            <th>issuer</th>
+            <th>value</th>
+            <th>startTime</th>
+            <th>endTime</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+
+    </div>
+
+    <span id="status"></span>
+
+  </div>
+
+</body>
+
+</html>
