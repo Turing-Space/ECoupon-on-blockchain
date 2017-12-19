@@ -203,8 +203,8 @@ window.addEventListener('load', async function () {
     var value = $('#value').val() || 100;
     var startTime = Date.now();
     var endTime = startTime + 60 * 60 * 1000; // add one hour
-    if ($('#startTime').data("DateTimePicker").date() != null) startTime = $('#startTime').data("DateTimePicker").date().unix();
-    if ($('#endTime').data("DateTimePicker").date() != null) endTime = $('#endTime').data("DateTimePicker").date().unix();
+    if ($('#startTime').data("DateTimePicker").date() != null) startTime = $('#startTime').data("DateTimePicker").date().unix() * 1000;
+    if ($('#endTime').data("DateTimePicker").date() != null) endTime = $('#endTime').data("DateTimePicker").date().unix() * 1000;
     console.log(startTime, endTime);
     if (startTime > endTime) {
       alert("end time must after start time!");

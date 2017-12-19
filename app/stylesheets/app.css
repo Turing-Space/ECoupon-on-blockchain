@@ -212,3 +212,8 @@ label {
   .profile_img_align_center {
     margin-top: -5px;
   }
+
+  td {
+    font-size: 12px;
+    font-family: monospace;
+  }
