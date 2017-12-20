@@ -10,7 +10,7 @@ contract Coupon {
   uint256 public value;
 
   // event
-  event ChangeOwnerTo(address new_owner);
+  event ChangeOwnerToEvent(address new_owner);
 
   // Functions with this modifier can only be executed by the owner
   modifier onlyOwner(){
@@ -46,12 +46,7 @@ contract Coupon {
   // receiver is the owner to be changed to 
   function changeOwnerTo(address receiver) public onlyOwner {
     owner = receiver;
-    ChangeOwnerTo(receiver);
-  }
-
-  // redeem the coupon
-  function redeem() public onlyOwner isValidRedeemTime {
-    changeOwnerTo(issuer);
+    ChangeOwnerToEvent(receiver);
   }
 
   // transfer the coupon ownership

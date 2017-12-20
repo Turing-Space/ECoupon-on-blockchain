@@ -130,8 +130,10 @@ window.App = {
     var couponAddr = await market.getCouponAddrByID.call(couponID);
     var coupon = Coupon.at(couponAddr);
     var owner = await coupon.owner.call();
+    var issuer = await coupon.issuer.call();
+
     // "Redeem" the coupon 
-    var receipt = await coupon.redeem({ from: owner });
+    var receipt = await coupon.transfer(issuer, { from: owner });
 
     // Get current owner and validate
     var owner = await coupon.owner.call();
@@ -265,9 +267,10 @@ window.addEventListener('load', async function () {
     var endTime = await App.getEndTime(couponID);
     if ($('#owner_redeem').val() != owner) {
       alert("coupon owner incorrect!");
+      owner = await App.getOwnerAddr(couponID);
       return;
     }
-    var now = web3.eth.getBlock("latest").timestamp;
+    var now = web3.eth.getBlock("latest").timestamp * 1000;
     if (now > endTime) {
       alert("coupon is expired");
       return;
