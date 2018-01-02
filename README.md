@@ -8,16 +8,19 @@ The Neon Network scaffolds a sustainable and scalable e-coupon market framework 
 ## Demo 
 ![demo img](img/demo.png)
 
+## Tools Needed before you start 
+1. bower: `npm install -g bower`
+2. testrpc: `npm install -g ethereumjs-testrpc`
+3. truffle: `npm install -g truffle`
+
 ## Usage
 1. After cloning the repository, install the dependencies under this directory.<br>
 `npm install`
 2. Install the bower componenets <br>
 `bower install`
 3. Open testrpc in another terminal to create 10 distinct accounts for testing. <br>
-(If you don't have testrpc yet, run `npm install -g ethereumjs-testrpc` to install it globally)<br>
 `testrpc`
 4. Compile and deploy our smart contracts:)<br>
-(If you don't have truffle, run `npm install -g truffle`) <br>
 `truffle migrate --reset`
 5. Run our web app! <br>
 `npm start`
@@ -39,6 +42,7 @@ The smart contract sorce code is deployed on [rinkeby](https://rinkeby.etherscan
 5. [TestRPC](https://www.npmjs.com/package/ethereumjs-testrpc) - A Node.js based Ethereum client for testing and development, which gen- erates ten funded accounts for testing purposes.
 6. [Solidity](http://solidity.readthedocs.io) - Programming language for smart contracts
 7. [Bootstrap3 DatePicker](http://eonasdan.github.io/bootstrap-datetimepicker/) - A library for date and time selection
+8. [Bower](https://github.com/bower/bower) - Offers a generic, unopinionated solution to the problem of front-end package management,
 
 ## License
 Licensed under the MIT License
