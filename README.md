@@ -12,6 +12,8 @@ The Neon Network scaffolds a sustainable and scalable e-coupon market framework 
 1. bower: `npm install -g bower`
 2. testrpc: `npm install -g ethereumjs-testrpc`
 3. truffle: `npm install -g truffle`
+<br>
+* Description and relevant links for these tools can be found in the **Technologies used** section
 
 ## Usage
 1. After cloning the repository, install the dependencies under this directory.<br>
@@ -34,7 +36,7 @@ The smart contract sorce code is deployed on [rinkeby](https://rinkeby.etherscan
 
 * We are using [Truffle Box](https://truffle-box.github.io) for bootstraping with [Truffle](https://github.com/trufflesuite/truffle) as the fundamental framework.
 
-## Technology used
+## Technologies used
 1. [The Truffle Framework](https://github.com/trufflesuite/truffle) - A development framework for Ethereum with built-in smart contract compilation, deployment, and testing.
 2. [Truffle Box](https://truffle-box.github.io) - Helpful boilerplates with integration of web3 and webpack
 3. [Web3](https://github.com/ethereum/wiki/wiki/JavaScript-API) - API for communicating with Ethereum nodes through RPC calls
