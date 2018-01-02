@@ -40,10 +40,11 @@ The smart contract sorce code is deployed on [rinkeby](https://rinkeby.etherscan
 6. [Solidity](http://solidity.readthedocs.io) - Programming language for smart contracts
 7. [Bootstrap3 DatePicker](http://eonasdan.github.io/bootstrap-datetimepicker/) - A library for date and time selection
 
+## License
+Licensed under the MIT License
+
 <br>
 <br>
 <br>
 🎉🎉 This is the end of README. Hope you like it:) All suggestions are welcomed, thanks!! 😉
 
-## License
-Licensed under the MIT License
