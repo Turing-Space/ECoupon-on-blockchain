@@ -1,4 +1,4 @@
 node_modules
-build
+build/contracts 
 package-lock.json
 bower_components
