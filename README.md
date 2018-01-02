@@ -35,3 +35,6 @@ The smart contract sorce code is deployed on [rinkeby](https://rinkeby.etherscan
 <br>
 <br>
 🎉🎉 This is the end of README. Hope you like it:) All suggestions are welcomed, thanks!! 😉
+
+## License
+Licensed under the MIT License
