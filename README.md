@@ -11,15 +11,17 @@ The Neon Network scaffolds a sustainable and scalable e-coupon market framework 
 ## Usage
 1. After cloning the repository, install the dependencies under this directory.<br>
 `npm install`
-2. Open testrpc in another terminal to create 10 distinct accounts for testing. <br>
+2. Install the bower componenets <br>
+`bower install`
+3. Open testrpc in another terminal to create 10 distinct accounts for testing. <br>
 (If you don't have testrpc yet, run `npm install -g ethereumjs-testrpc` to install it globally)<br>
 `testrpc`
-3. Compile and deploy our smart contracts:)<br>
+4. Compile and deploy our smart contracts:)<br>
 (If you don't have truffle, run `npm install -g truffle`) <br>
 `truffle migrate --reset`
-4. Run our web app! <br>
+5. Run our web app! <br>
 `npm start`
-5. Our application is running on [http://localhost:8080](http://localhost:8080)
+6. Our application is running on [http://localhost:8080](http://localhost:8080)
 
 ## Additional Notes
 * This repository is created as a minimized version (excluding the unit tests, etc.) from the original repository [here](https://github.com/yhuag/Ethereum-HyperIntelligent-Contract-Research). <br>
