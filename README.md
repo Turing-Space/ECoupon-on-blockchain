@@ -42,7 +42,7 @@ The smart contract sorce code is deployed on [rinkeby](https://rinkeby.etherscan
 5. [TestRPC](https://www.npmjs.com/package/ethereumjs-testrpc) - A Node.js based Ethereum client for testing and development, which gen- erates ten funded accounts for testing purposes.
 6. [Solidity](http://solidity.readthedocs.io) - Programming language for smart contracts
 7. [Bootstrap3 DatePicker](http://eonasdan.github.io/bootstrap-datetimepicker/) - A library for date and time selection
-8. [Bower](https://github.com/bower/bower) - Offers a generic, unopinionated solution to the problem of front-end package management,
+8. [Bower](https://github.com/bower/bower) - Offers a generic, unopinionated solution to the problem of front-end package management
 
 ## License
 Licensed under the MIT License
