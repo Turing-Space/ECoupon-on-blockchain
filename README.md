@@ -11,7 +11,8 @@ The Neon Network scaffolds a sustainable and scalable e-coupon market framework 
 ## Usage
 1. After cloning the repository, install the dependencies under this directory.<br>
 `npm install`
-2. Open testrpc in another terminal to create 10 distinct accounts for testing. (If you don't have testrpc yet, run `npm install -g ethereumjs-testrpc` to install it globally)<br>
+2. Open testrpc in another terminal to create 10 distinct accounts for testing. <br>
+(If you don't have testrpc yet, run `npm install -g ethereumjs-testrpc` to install it globally)<br>
 `testrpc`
 3. Compile and deploy our smart contracts:)<br>
 `truffle migrate --reset`
