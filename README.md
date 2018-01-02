@@ -15,6 +15,7 @@ The Neon Network scaffolds a sustainable and scalable e-coupon market framework 
 (If you don't have testrpc yet, run `npm install -g ethereumjs-testrpc` to install it globally)<br>
 `testrpc`
 3. Compile and deploy our smart contracts:)<br>
+(If you don't have truffle, run `npm install -g truffle`) <br>
 `truffle migrate --reset`
 4. Run our web app! <br>
 `npm start`
@@ -25,6 +26,8 @@ The Neon Network scaffolds a sustainable and scalable e-coupon market framework 
 The smart contract sorce code is deployed on [rinkeby](https://rinkeby.etherscan.io/address/0x3a4b4259140988baaf9de41e95423052d9c0300e#code)
 
 * Testrpc has been taken by Truffle and thus has changed its name to ganache-cli. The above command can still work with its old features but not the lastest ones. More details please refer to their [GitHub repo](https://github.com/trufflesuite/ganache-cli).
+
+* We are using [Truffle Box](https://truffle-box.github.io) for bootstraping with [Truffle](https://github.com/trufflesuite/truffle) as the fundamental framework.
 
 <br>
 <br>
