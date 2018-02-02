@@ -1,6 +1,6 @@
 # The Neon Network -- E-coupons on Blockchain 
 * Author: Lee Ting Ting & Hu Yao Chieh
-* Supervised by: Prof. HUI Pan & Dimitris from HKUST
+* Supervised by: Prof. HUI Pan & Dimitris Chatzopoulos from HKUST
 
 ## Description 
 The Neon Network scaffolds a sustainable and scalable e-coupon market framework upon Ethereum network, facilitating secure value distribution gateways and non-falsifiability for e-coupons within the sophisticated networks of issuers and users. This paper presents a com- plete and generic solution to the emerging market needs of e-coupon on the blockchain, which entailed less manual costs and errors through providing non-falsifiable and non-repudiable coupon instances with the smart contract.
