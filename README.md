@@ -1,4 +1,5 @@
 # The Neon Network -- E-coupons on Blockchain 
+![](img/cover.png)
 * Author: Lee Ting Ting & Hu Yao Chieh
 * Supervised by: Prof. HUI Pan & Dimitris Chatzopoulos from HKUST
 
